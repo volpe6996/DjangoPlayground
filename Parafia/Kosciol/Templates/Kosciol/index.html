@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        .main
+        {
+            background: rgb(63,94,251);
+            background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+            width: 100%;
+            height: 100vh;
+            margin: 0 !important;
+            font-size: 2rem;
+            padding: 0;
+            text-align: center;
+        }
+
+        .text
+        {
+            width: 35vw;
+            transform: translateX(50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h1 style="font-size: 30px;">
+            Strona prafaii pod wezwaniem {{nazwa_parafii}}
+        </h1>
+        <div class="text">
+            Dzisiejsza taca zostanie przekazana na konto biskupa.
+        </div>
+        <ul>
+            <li>Emerytowany</li>
+            <li>
+                {% for osoba in ksiadz %}
+                    {% if osoba.age >= 65%}
+                        {{osoba.name}}
+                        <br>
+                    {% endif %}
+                {% endfor %}
+            </li>
+            <li>Pracujący</li>
+            <li>
+                {% for osoba in ksiadz %}
+                    {% if osoba.age > 18 and osoba.age < 65%}
+                        {{osoba.name}}
+                        <br>
+                    {% endif %}
+                {% endfor %}
+            </li>
+            <li>Ministrant</li>
+            <li>
+                {% for osoba in ksiadz %}
+                    {% if osoba.age < 18%}
+                        {{osoba.name}}
+                        <br>
+                    {% endif %}
+                {% endfor %}
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
